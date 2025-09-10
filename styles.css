@@ -1,0 +1,325 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', 'Consolas', 'monospace', Arial, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  
+  .bg-gradient {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background: radial-gradient(circle at 25% 30%, #3e1fd5 200px, transparent 500px),
+                radial-gradient(circle at 75% 80%, #ff4fa8 200px, transparent 500px),
+                linear-gradient(135deg, #7028e4, #e5b2ca 60%, #ea4b9c 100%);
+    width: 100vw;
+    height: 100vh;
+    filter: blur(0.5px);
+  }
+  
+  .portfolio-terminal {
+    position: relative;
+    z-index: 1;
+    margin: 48px auto;
+    max-width: 680px;
+    box-shadow: 0 0 48px #0007;
+    border-radius: 1rem;
+    background: rgba(30, 0, 50, 0.82);
+    padding-bottom: 0;
+    overflow: hidden;
+  }
+  
+  .terminal-bar {
+    display: flex;
+    align-items: center;
+    background: #181026;
+    padding: 8px 16px;
+    border-radius: 1rem 1rem 0 0;
+    z-index: 2;
+  }
+  
+  .terminal-bar .circle {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    margin-right: 6px;
+    display: inline-block;
+  }
+  .circle.red    { background: #fa5252; }
+  .circle.yellow { background: #f7d51d; }
+  .circle.green  { background: #3dc950; }
+  .terminal-title { color: #b6aad8; margin-left: 8px; font-family: 'Consolas', monospace; font-size: 1rem; }
+  
+  .tab-menu {
+    background: transparent;
+    text-align: center;
+    margin-top: 2px;
+  }
+  
+  .tab-menu button {
+    display: inline-block;
+    padding: 7px 22px;
+    margin: 0 4px;
+    border: none;
+    border-radius: 18px;
+    background: #2c164a;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .tab-menu button.active, .tab-menu button:hover {
+    background: #ae3ec9;
+    color: #fff;
+  }
+  
+  #content {
+    padding: 36px 32px 14px 32px;
+    color: #f8f8f8;
+    min-height: 270px;
+    transition: min-height 0.3s;
+    text-align: center;
+  }
+  #content h1 {
+    margin: 0 0 12px 0;
+    font-size: 2.2rem;
+    font-weight: bold;
+    letter-spacing: 1.2px;
+  }
+  #content .avatar {
+    width: 92px;
+    height: 92px;
+    background: linear-gradient(135deg, #e39cf7, #fe86ba);
+    color: #fff;
+    font-size: 2.1rem;
+    font-weight: bold;
+    border-radius: 50%;
+    margin: 18px auto 18px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 16px #0002;
+  }
+  #content .stats-container {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 18px;
+  }
+  #content .stat-block {
+    background: #25144a;
+    border-radius: 0.8rem;
+    padding: 18px 20px;
+    min-width: 120px;
+    margin: 0 2px;
+  }
+  #content .stat-title {
+    font-size: 1.08rem;
+    color: #a894f1;
+    margin-bottom: 6px;
+  }
+  #content .stat-value {
+    font-weight: bold;
+    font-size: 1.22rem;
+    color: #fff;
+  }
+  @media (max-width: 600px) {
+    .portfolio-terminal { max-width: 96vw; }
+    #content { padding: 13px 5vw 10px 5vw; }
+    #content .stats-container { gap: 6px; flex-direction: column; }
+  }
+  
+  .terminal-area {
+    background: #181026;
+    color: #21fa90;
+    font-family: 'Consolas', 'monospace';
+    min-height: 120px;
+    max-height: 210px;
+    overflow-y: auto;
+    border-radius: 0 0 1rem 1rem;
+    border-top: 1.5px solid #403868;
+    padding: 0;
+    position: relative;
+  }
+  
+  #terminal-output {
+    padding: 18px 16px 0 16px;
+    font-size: 1.04rem;
+    min-height: 90px;
+    word-break: break-all;
+  }
+  
+  #terminal-form {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    border: none;
+    padding: 8px 16px 18px 16px;
+    color: #24c897;
+  }
+  .cmd-prompt { color: #1ef08a; margin-right: 6px; font-family: 'Consolas', monospace; font-weight: bold; }
+  #terminal-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #24e49d;
+    font-size: 1.04rem;
+    font-family: 'Consolas', monospace;
+  }
+
+  /* Overlay and animation */
+#overlay {
+    position: fixed;
+    z-index: 30;
+    inset: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(22,0,36,0.93);
+    display: flex;
+    align-items: center; justify-content: center;
+    transition: opacity 1s;
+  }
+  .overlay-content {
+    text-align: center;
+    background: rgba(54,10,66,0.98);
+    padding: 40px;
+    border-radius: 22px;
+    box-shadow: 0 0 40px #0008;
+    min-width: 260px;
+  }
+  #username-form { margin-bottom: 12px; }
+  #username-input {
+    font-size: 1.08rem;
+    padding: 8px 15px; border-radius: 8px; border: 1px solid #ae3ec9; margin-top:8px;
+    background: #200038; color: #fff;
+  }
+  #username-form button {
+    margin-left: 8px; padding: 8px 17px;
+    border-radius: 7px; background: #ae3ec9; color: #fff; border: none; font-weight: 600; cursor: pointer;
+  }
+  #glitch-text {
+    font-size: 2.1rem;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #fff;
+    position: relative;
+    display: block;
+  }
+  
+  /* Glitch effect (using multiple pseudo elements) */
+  .glitch {
+    position: relative;
+    color: #fff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: glitch-skew 0.4s infinite linear alternate-reverse;
+  }
+  .glitch:before, .glitch:after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0; top: 0;
+    width: 100%;
+    overflow: hidden;
+  }
+  .glitch:before {
+    color: #fe00f6aa;
+    z-index: 1;
+    left: 2px; text-shadow: -1px 0 #ae3ec9;
+    animation: glitch-anim 0.28s infinite linear alternate-reverse;
+  }
+  .glitch:after {
+    color: #01fffdd2;
+    z-index: 2;
+    left: -2px; text-shadow: 1px 0 #3e1fd5;
+    animation: glitch-anim2 0.21s infinite linear alternate-reverse;
+  }
+  
+  @keyframes glitch-anim {
+    0%   { clip-path: inset(0 0 0 0);}
+    20%  { clip-path: inset(0 0 85% 0);}
+    40%  { clip-path: inset(0 0 0 0);}
+    60%  { clip-path: inset(80% 0 0 0);}
+    100% { clip-path: inset(0 0 0 0);}
+  }
+  @keyframes glitch-anim2 {
+    0%   { clip-path: inset(0 0 0 0);}
+    25%  { clip-path: inset(20% 0 0 0);}
+    50%  { clip-path: inset(0 0 77% 0);}
+    80%  { clip-path: inset(0 0 0 0);}
+    100% { clip-path: inset(0 0 0 0);}
+  }
+  @keyframes glitch-skew {
+    0%   { transform: skew(-2deg); }
+    25%  { transform: skew(3deg); }
+    50%  { transform: skew(-1deg); }
+    75%  { transform: skew(2deg); }
+    100% { transform: skew(-1deg); }
+  }
+  
+  /* Hide terminal/content until overlay gone */
+  body:not(.reveal-content) .portfolio-terminal,
+  body:not(.reveal-content) .bg-gradient {
+    filter: blur(7px) brightness(0.3)!important;
+    pointer-events: none;
+    user-select: none;
+  }
+  body:not(.reveal-content) .portfolio-terminal {
+    opacity: 0;
+    transition: opacity 0.7s;
+  }
+  body.reveal-content .portfolio-terminal {
+    opacity: 1;
+    transition: opacity 0.9s;
+  }
+  
+  /* Only red close circle visible */
+.terminal-bar .circle {
+    width: 13px; height: 13px; margin-right: 12px; margin-left: 6px; cursor: pointer;
+  }
+  .terminal-bar .circle.red { background: #fa5252; }
+  .terminal-bar .circle:not(.red) { display: none; }
+  
+  /* Terminal open icon button */
+  #terminal-open-btn {
+    position: fixed; bottom: 40px; right: 40px; z-index: 12;
+    background: none; border: none; cursor: pointer;
+    border-radius: 12px; box-shadow: 0 0 20px #43165675;
+    padding: 0; transition: transform 0.18s;
+  }
+  #terminal-open-btn:hover { transform: scale(1.10) rotate(-6deg);}
+  @media (max-width: 700px) {
+    #terminal-open-btn { bottom: 20px; right: 12px; }
+  }
+  #dont-click-btn {
+  position: fixed;
+  bottom: 100px;
+  right: 40px;
+  z-index: 12;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #fa525255;
+  padding: 0;
+  transition: transform 0.18s;
+}
+#dont-click-btn:hover { transform: scale(1.09) rotate(3deg);}
+@media (max-width: 700px) {
+  #dont-click-btn { bottom: 80px; right: 12px; }
+}
+
+/* Shake animation */
+.shake {
+  animation: shake 0.4s;
+}
+@keyframes shake {
+  0%   { transform: translate(0, 0) rotate(0deg);}
+  20%  { transform: translate(-7px, 4px) rotate(-1deg);}
+  40%  { transform: translate(8px, -3px) rotate(1deg);}
+  60%  { transform: translate(-5px, 2px) rotate(-1deg);}
+  80%  { transform: translate(6px, 1px) rotate(1deg);}
+  100% { transform: translate(0,0) rotate(0deg);}
+}

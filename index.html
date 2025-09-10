@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pranshu Yadav Portfolio</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+    <div id="overlay" class="overlay-active">
+        <div class="overlay-content">
+          <form id="username-form">
+            <label for="username-input">Enter your name:</label>
+            <input id="username-input" type="text" maxlength="20" minlength="1" required autofocus />
+            <button type="submit">Enter</button>
+          </form>
+          <div id="glitch-text" class="glitch" style="display:none;"></div>
+        </div>
+      </div>
+      
+  <div class="bg-gradient"></div>
+  <main class="portfolio-terminal">
+    <div class="terminal-bar">
+        <span class="circle red" id="terminal-close-btn" title="Close"></span>
+        <span class="terminal-title">pranshu@portfolio:~$</span>
+      </div>
+      
+    <nav class="tab-menu">
+      <button data-section="about" class="active">About</button>
+      <button data-section="projects">Projects</button>
+      <button data-section="education">Education</button>
+      <button data-section="skills">Skills</button>
+      <button data-section="contact">Contact</button>
+    </nav>
+    <section id="content">
+      <!-- Dynamic content inserted here -->
+    </section>
+    <div class="terminal-area" id="terminal">
+      <div id="terminal-output"></div>
+      <form id="terminal-form" autocomplete="off">
+        <span class="cmd-prompt">$</span>
+        <input type="text" id="terminal-input" placeholder="Type a command..." autofocus autocomplete="off" />
+      </form>
+    </div>
+  </main>
+  <script src="script.js"></script>
+  <button id="terminal-open-btn" title="Open Terminal" style="display:none">
+    <svg width="38" height="38" viewBox="0 0 48 48" fill="none">
+      <rect width="48" height="48" rx="12" fill="#181026" opacity="0.94"/>
+      <text x="14" y="30" fill="#21fa90" font-family="Consolas, monospace" font-size="23">_</text>
+      <polyline points="14,16 22,24 14,32" stroke="#21fa90" stroke-width="3" fill="none"/>
+    </svg>
+  </button>
+  
+  
+</body>
+</html>
