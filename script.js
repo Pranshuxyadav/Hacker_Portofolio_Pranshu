@@ -1,58 +1,55 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Existing overlay code...
-  
-    // Terminal open/close logic
-    const terminal = document.querySelector('.portfolio-terminal');
-    const closeBtn = document.getElementById('terminal-close-btn');
-    const openBtn = document.getElementById('terminal-open-btn');
-  
-    // Hide terminal, show open icon
-    function closeTerminal() {
-      terminal.style.display = "none";
-      openBtn.style.display = "block";
-    }
-    // Show terminal, hide open icon
-    function openTerminal() {
-      terminal.style.display = "block";
-      openBtn.style.display = "none";
-    }
-    closeBtn.addEventListener("click", closeTerminal);
-    openBtn.addEventListener("click", openTerminal);
-  
-    // Default: terminal visible on page load
-    openTerminal();
-  });
-  
-// Overlay logic (add this at TOP of script.js)
+  // Overlay logic
+  const overlay = document.getElementById('overlay');
+  const form = document.getElementById('username-form');
+  const glitchBox = document.getElementById('glitch-text');
+  let username = '';
 
-document.addEventListener("DOMContentLoaded", function() {
-    const overlay = document.getElementById('overlay');
-    const form = document.getElementById('username-form');
-    const glitchBox = document.getElementById('glitch-text');
-    let username = '';
-  
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      username = document.getElementById('username-input').value.trim().substring(0,20);
-      if(username.length > 0) {
-        glitchBox.setAttribute('data-text', `Hi! ${username}`);
-        glitchBox.textContent = `Hi! ${username}`;
-        form.style.display = 'none';
-        glitchBox.style.display = 'block';
-        // After 1.6s, fade out overlay & show main site
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    username = document.getElementById('username-input').value.trim().substring(0,20);
+    if(username.length > 0) {
+      glitchBox.setAttribute('data-text', `Hi! ${username}`);
+      glitchBox.textContent = `Hi! ${username}`;
+      form.style.display = 'none';
+      glitchBox.style.display = 'block';
+      setTimeout(() => {
+        overlay.style.opacity = '0';
         setTimeout(() => {
-          overlay.style.opacity = '0';
-          setTimeout(() => {
-            overlay.style.display = 'none';
-            document.body.classList.add('reveal-content');
-          }, 900);
-        }, 1600);
-      }
-    });
-  
-    // Hide all content until overlay is done
-    document.body.classList.remove('reveal-content');
+          overlay.style.display = 'none';
+          document.body.classList.add('reveal-content');
+        }, 900);
+      }, 1600);
+    }
   });
+
+  // Hide all content until overlay is done
+  document.body.classList.remove('reveal-content');
+
+  // Terminal open/close logic
+  const terminal = document.querySelector('.portfolio-terminal');
+  const closeBtn = document.getElementById('terminal-close-btn');
+  const openBtn = document.getElementById('terminal-open-btn');
+
+  // Hide terminal, show open icon
+  function closeTerminal() {
+    terminal.style.display = "none";
+    openBtn.style.display = "block";
+  }
+  // Show terminal, hide open icon
+  function openTerminal() {
+    terminal.style.display = "block";
+    openBtn.style.display = "none";
+  }
+  closeBtn.addEventListener("click", closeTerminal);
+  openBtn.addEventListener("click", openTerminal);
+
+  // Default: terminal visible on page load
+  openTerminal();
+
+  // ... Place your terminal commands logic, sections, and UI handlers here ...
+});
+
   
 // Sample data for dynamic sections
 const sections = {
@@ -213,20 +210,6 @@ const sections = {
       });
     });
 
-    // "Don't Click" alarm effect
-const dontClickBtn = document.getElementById('dont-click-btn');
-const alarmAudio = document.getElementById('alarm-audio');
-
-dontClickBtn.addEventListener("click", function() {
-  // Play sound from start
-  alarmAudio.currentTime = 0;
-  alarmAudio.play();
-  // Add shake effect to entire body
-  document.body.classList.add('shake');
-  setTimeout(() => {
-    document.body.classList.remove('shake');
-  }, 450);
-});
 
   
     // Terminal form
